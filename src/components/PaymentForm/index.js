@@ -3,6 +3,7 @@ import api from '../../services/api';
 
 const PaymentForm = () => {
   const [formData, setFormData] = useState({
+    cpf: '',
     card_holder: '',
     card_number: '',
     expiry_date: '',
@@ -24,7 +25,7 @@ const PaymentForm = () => {
         message: 'Pagamento processado com sucesso!' 
       });
       
-      // Limpa o formulário após sucesso
+      // Clear Form
       setFormData({
         card_holder: '',
         card_number: '',
@@ -58,6 +59,22 @@ const PaymentForm = () => {
         )}
         
         <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <label htmlFor="cpf" className="block text-sm font-medium text-gray-700">
+              CPF
+            </label>
+            <input
+              id="cpf"
+              type="text"
+              placeholder="123.456.789-00"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              value={formData.cpf}
+              onChange={(e) => setFormData({ ...formData, cpf: e.target.value })}
+              required
+              maxLength="14"
+            />
+          </div>
+
           <div className="space-y-2">
             <label htmlFor="card_holder" className="block text-sm font-medium text-gray-700">
               Nome do Titular

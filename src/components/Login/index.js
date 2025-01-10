@@ -19,13 +19,19 @@ const Login = () => {
 
       if (response.data.status.code === 200) {
         const userData = response.data.status.data.user;
-        localStorage.setItem('userData', JSON.stringify(userData));
-        localStorage.setItem('isAuthenticated', 'true');
-        
-        if (userData.role === 'admin') {
-          navigate('/admin');
-        } else {
-          navigate('/');
+
+        const token = response.headers['authorization']?.split(' ')[1];  // "Bearer <token>"
+
+        if (token) {
+          localStorage.setItem('token', token);
+          localStorage.setItem('userData', JSON.stringify(userData));
+          localStorage.setItem('isAuthenticated', 'true');
+
+          if (userData.role === 'admin') {
+            navigate('/admin');
+          } else {
+            navigate('/');
+          }
         }
       }
     } catch (error) {
