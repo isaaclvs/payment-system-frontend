@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import airForceImage from '../../assets/images/air-force-one.png';
 
 const ProductDisplay = () => {
   const navigate = useNavigate();
@@ -8,7 +9,7 @@ const ProductDisplay = () => {
     price: 100.00,
     description: 'O Nike Air Force 1 é um tênis clássico que combina estilo e conforto. Com sua silhueta icônica e design atemporal, é perfeito para qualquer ocasião.',
     images: [
-      'https://imgnike-a.akamaihd.net/768x768/0116970P.jpg'
+      airForceImage
     ],
     details: [
       'Cor: Branco',
