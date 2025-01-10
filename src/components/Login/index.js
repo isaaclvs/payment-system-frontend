@@ -8,7 +8,7 @@ const Login = () => {
     email: '',
     password: ''
   });
-  const [error, setError] = useState('');
+  const [status, setStatus] = useState({ type: '', message: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,54 +18,76 @@ const Login = () => {
       });
 
       if (response.data.status.code === 200) {
-        localStorage.setItem('userData', JSON.stringify(response.data.status.data.user));
+        const userData = response.data.status.data.user;
+        localStorage.setItem('userData', JSON.stringify(userData));
         localStorage.setItem('isAuthenticated', 'true');
         
-        if (response.data.status.data.user.role === 'admin') {
+        if (userData.role === 'admin') {
           navigate('/admin');
         } else {
           navigate('/');
         }
       }
     } catch (error) {
-      setError('Email ou senha inválidos');
+      setStatus({ 
+        type: 'error', 
+        message: 'Email ou senha inválidos' 
+      });
     }
   };
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Senha:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Entrar</button>
-      </form>
+    <div className="max-w-md mx-auto mt-8 bg-white rounded-lg shadow-lg">
+      <div className="px-6 py-4 border-b border-gray-200">
+        <h2 className="text-xl font-semibold text-gray-800">Login</h2>
+      </div>
+      
+      <div className="p-6">
+        {status.message && (
+          <div className="mb-4 p-4 rounded-md bg-red-50 text-red-700 border border-red-200">
+            {status.message}
+          </div>
+        )}
+        
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="seu@email.com"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              required
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              Senha
+            </label>
+            <input
+              id="password"
+              type="password"
+              placeholder="••••••••"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              value={formData.password}
+              onChange={(e) => setFormData({...formData, password: e.target.value})}
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-2 px-4 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-md transition duration-200"
+          >
+            Entrar
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
