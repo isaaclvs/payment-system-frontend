@@ -166,6 +166,7 @@ npm test -- --watch
 Para verificar a cobertura de testes do projeto:
 ```bash
 npm test -- --coverage
+```
 
 ## Licença
 Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes
