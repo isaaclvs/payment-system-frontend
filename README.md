@@ -103,5 +103,29 @@ O frontend se comunica com o backend Rails através de endpoints RESTful:
 - `npm run build` - Cria build de produção
 - `npm run lint` - Executa ESLint
 
+## Demonstração
+
+### Imagens da Aplicação
+
+Aqui estão algumas capturas de tela da aplicação:
+
+![Formulário de Pagamento](/src/assets/images/payment-form.png)  
+*Exemplo do Formulário de Pagamento*
+
+![Painel Administrativo](/src/assets/images/view-admin.png)  
+*Exemplo do Painel Administrativo*
+
+![Tela de Login](/src/assets/images/login.png)  
+*Exemplo do Tela de Login*
+
+![Produto](/src/assets/images/view-product.png)  
+*Exemplo de Produto*
+
+### Demonstração em Vídeo
+
+Você pode ver uma demonstração completa da aplicação no seguinte link:
+
+[Assistir a Demonstração](https://drive.google.com/file/d/1EXa4wx5F9-Es8hrHIGW3fg2dq98b_pA7/view?usp=sharing)
+
 ## Licença
 Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes
