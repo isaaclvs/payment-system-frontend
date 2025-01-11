@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# Sistema de Pagamentos Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Visão Geral
+Esta aplicação frontend baseada em React fornece uma interface de usuário para um sistema de processamento de pagamentos. Apresenta um formulário de pagamento para os usuários enviarem transações e um painel administrativo para visualizar o histórico de pagamentos.
 
-## Available Scripts
+## Funcionalidades
+- Interface de processamento de pagamentos com validação de formulário
+- Painel administrativo para histórico de transações
+- Manipulação segura de informações de cartão de crédito
+- Atualizações em tempo real do status do pagamento
+- Integração com API backend Rails
 
-In the project directory, you can run:
+## Pré-requisitos
+- Node.js (v16 ou superior)
+- Gerenciador de pacotes npm ou yarn
+- Navegador web moderno
+- API Backend em execução (ver repositório backend)
 
-### `npm start`
+## Instalação
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone o repositório:
+```bash
+git clone https://github.com/isaaclvs/payment-system-frontend.git
+cd payment-system-frontend
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Instale as dependências:
+```bash
+npm install
+# ou
+yarn install
+```
 
-### `npm test`
+3. Configure as variáveis de ambiente:
+Crie um arquivo `.env` no diretório raiz e adicione:
+```
+REACT_APP_API_URL=http://localhost:3000
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Inicie o servidor de desenvolvimento:
+```bash
+npm start
+# ou
+yarn start
+```
 
-### `npm run build`
+## Estrutura do Projeto
+```
+src/
+├── components/
+│   ├── PaymentForm/
+│   ├── AdminDashboard/
+│   └── common/
+├── contexts/
+│   └── AuthContext/
+├── hooks/
+│   └── usePayment/
+├── services/
+│   └── api/
+├── utils/
+└── App.js
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Componentes Principais
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Formulário de Pagamento
+- Coleta informações de pagamento:
+  - Nome do titular do cartão
+  - Número do cartão
+  - Data de validade
+  - CVV
+  - Valor do pagamento
+- Implementa validação de formulário
+- Exibe status da transação e feedback
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Painel Administrativo
+- Requer autenticação
+- Exibe todas as transações
+- Mostra detalhes da transação:
+  - Nome do cliente
+  - Últimos 4 dígitos do cartão
+  - Valor da transação
+  - Status do pagamento
 
-### `npm run eject`
+## Integração com API
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+O frontend se comunica com o backend Rails através de endpoints RESTful:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- POST `/api/payments` - Processa novos pagamentos
+- GET `/api/payments` - Recupera histórico de pagamentos (somente admin)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Considerações de Segurança
+- Dados do cartão de crédito nunca são armazenados localmente
+- HTTPS obrigatório para todas as comunicações com a API
+- Validação de entrada em todos os formulários
+- Autenticação baseada em JWT para acesso administrativo
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Desenvolvimento
 
-## Learn More
+### Scripts Disponíveis
+- `npm start` - Inicia servidor de desenvolvimento
+- `npm test` - Executa suite de testes
+- `npm run build` - Cria build de produção
+- `npm run lint` - Executa ESLint
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Licença
+Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes
