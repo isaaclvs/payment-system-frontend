@@ -127,5 +127,45 @@ Você pode ver uma demonstração completa da aplicação no seguinte link:
 
 [Assistir a Demonstração](https://drive.google.com/file/d/1EXa4wx5F9-Es8hrHIGW3fg2dq98b_pA7/view?usp=sharing)
 
+## Testes
+
+### Visão Geral dos Testes
+O projeto utiliza Jest e React Testing Library para testes de componentes. Os testes focam em garantir que os elementos principais da interface do usuário estejam funcionando corretamente.
+
+### Estrutura de Testes
+```
+src/
+├── components/
+│   ├── PaymentForm/
+│   │   ├── index.js
+│   │   └── PaymentForm.test.js
+│   └── ...
+```
+
+### Testes Implementados
+- **PaymentForm**
+  - Renderização do formulário de pagamento
+  - Exibição correta do valor
+  - Presença do botão de pagamento
+
+### Executando os Testes
+```bash
+# Executa todos os testes
+npm test
+
+# Executa testes em modo watch
+npm test -- --watch
+```
+
+### Dependências de Teste
+- Jest
+- @testing-library/react
+- @testing-library/jest-dom
+
+### Cobertura de Testes
+Para verificar a cobertura de testes do projeto:
+```bash
+npm test -- --coverage
+
 ## Licença
 Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes
