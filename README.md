@@ -1,50 +1,50 @@
-# Sistema de Pagamentos Frontend
+# Payment System Frontend
 
-## Visão Geral
-Esta aplicação frontend baseada em React fornece uma interface de usuário para um sistema de processamento de pagamentos. Apresenta um formulário de pagamento para os usuários enviarem transações e um painel administrativo para visualizar o histórico de pagamentos.
+## Overview
+This React-based frontend application provides a user interface for a payment processing system. It includes a payment form for users to submit transactions and an admin dashboard to view the payment history.
 
-## Funcionalidades
-- Interface de processamento de pagamentos com validação de formulário
-- Painel administrativo para histórico de transações
-- Manipulação segura de informações de cartão de crédito
-- Atualizações em tempo real do status do pagamento
-- Integração com API backend Rails
+## Features
+- Payment form with input validation  
+- Admin dashboard to view transaction history  
+- Secure handling of credit card information  
+- Real-time payment status updates  
+- Integration with a Rails backend API
 
-## Pré-requisitos
-- Node.js (v16 ou superior)
-- Gerenciador de pacotes npm ou yarn
-- Navegador web moderno
-- API Backend em execução (ver repositório backend)
+## Prerequisites
+- Node.js (v16 or higher)  
+- npm or yarn package manager  
+- Modern web browser  
+- Running backend API (see backend repository)
 
-## Instalação
+## Installation
 
-1. Clone o repositório:
+1. Clone the repository:
 ```bash
 git clone https://github.com/isaaclvs/payment-system-frontend.git
 cd payment-system-frontend
 ```
 
-2. Instale as dependências:
+2. Install dependencies:
 ```bash
 npm install
-# ou
+# or
 yarn install
 ```
 
-3. Configure as variáveis de ambiente:
-Crie um arquivo `.env` no diretório raiz e adicione:
-```
+3. Set up environment variables:
+Create a `.env` file in the project root and add:
+```ini
 REACT_APP_API_URL=http://localhost:3000
 ```
 
-4. Inicie o servidor de desenvolvimento:
+4. Start the development server:
 ```bash
 npm start
-# ou
+# or
 yarn start
 ```
 
-## Estrutura do Projeto
+## Project Structure
 ```
 src/
 ├── components/
@@ -61,65 +61,46 @@ src/
 └── App.js
 ```
 
-## Componentes Principais
+## Main Components
 
-### Formulário de Pagamento
-- Coleta informações de pagamento:
-  - Nome do titular do cartão
-  - Número do cartão
-  - Data de validade
-  - CVV
-  - Valor do pagamento
-- Implementa validação de formulário
-- Exibe status da transação e feedback
+### Payment Form
+Collects payment information:
+- Cardholder name
+- Card number
+- Expiration date
+- CVV
+- Payment amount
+- Implements form validation
+- Displays transaction status and feedback
 
-### Painel Administrativo
-- Requer autenticação
-- Exibe todas as transações
-- Mostra detalhes da transação:
-  - Nome do cliente
-  - Últimos 4 dígitos do cartão
-  - Valor da transação
-  - Status do pagamento
+### Admin Dashboard
+- Requires authentication
+- Displays all transactions
+- Shows transaction details:
+  - Customer name
+  - Last 4 digits of the card
+  - Transaction amount
+  - Payment status
 
-## Integração com API
+## API Integration
+The frontend communicates with the Rails backend through RESTful endpoints:
+- `POST /api/payments` - Processes new payments
+- `GET /api/payments` - Retrieves payment history (admin only)
 
-O frontend se comunica com o backend Rails através de endpoints RESTful:
+## Security Considerations
+- Credit card data is never stored locally
+- HTTPS is required for all API communication
+- Input validation in all forms
+- JWT-based authentication for admin access
 
-- POST `/api/payments` - Processa novos pagamentos
-- GET `/api/payments` - Recupera histórico de pagamentos (somente admin)
+## Development
 
-## Considerações de Segurança
-- Dados do cartão de crédito nunca são armazenados localmente
-- HTTPS obrigatório para todas as comunicações com a API
-- Validação de entrada em todos os formulários
-- Autenticação baseada em JWT para acesso administrativo
+### Available Scripts
+- `npm start` - Runs the development server
+- `npm test` - Runs the test suite
+- `npm run build` - Builds the app for production
+- `npm run lint` - Runs ESLint for code linting
 
-## Desenvolvimento
-
-### Scripts Disponíveis
-- `npm start` - Inicia servidor de desenvolvimento
-- `npm test` - Executa suite de testes
-- `npm run build` - Cria build de produção
-- `npm run lint` - Executa ESLint
-
-## Demonstração
-
-### Imagens da Aplicação
-
-Aqui estão algumas capturas de tela da aplicação:
-
-![Formulário de Pagamento](/src/assets/images/payment-form.png)  
-*Exemplo do Formulário de Pagamento*
-
-![Painel Administrativo](/src/assets/images/view-admin.png)  
-*Exemplo do Painel Administrativo*
-
-![Tela de Login](/src/assets/images/login.png)  
-*Exemplo do Tela de Login*
-
-![Produto](/src/assets/images/view-product.png)  
-*Exemplo de Produto*
 
 ### Demonstração em Vídeo
 
@@ -127,12 +108,36 @@ Você pode ver uma demonstração completa da aplicação no seguinte link:
 
 [Assistir a Demonstração](https://drive.google.com/file/d/1EXa4wx5F9-Es8hrHIGW3fg2dq98b_pA7/view?usp=sharing)
 
-## Testes
+## Demo
 
-### Visão Geral dos Testes
-O projeto utiliza Jest e React Testing Library para testes de componentes. Os testes focam em garantir que os elementos principais da interface do usuário estejam funcionando corretamente.
+### Application Screenshots
 
-### Estrutura de Testes
+Here are some screenshots of the application:
+
+![Payment Form](/src/assets/images/payment-form.png)  
+*Payment Form Example*
+
+![Admin Dashboard](/src/assets/images/view-admin.png)  
+*Admin Dashboard Example*
+
+![Login Screen](/src/assets/images/login.png)  
+*Login Screen Example*
+
+![Product View](/src/assets/images/view-product.png)  
+*Product View Example*
+
+### Video Demo
+
+You can view a full demo of the application at the following link:
+
+[Watch Demo](https://drive.google.com/file/d/1EXa4wx5F9-Es8hrHIGW3fg2dq98b_pA7/view?usp=sharing)
+
+## Testing
+
+### Testing Overview
+The project uses Jest and React Testing Library to test components. The tests ensure key UI elements function correctly.
+
+### Test Structure
 ```
 src/
 ├── components/
@@ -142,31 +147,32 @@ src/
 │   └── ...
 ```
 
-### Testes Implementados
-- **PaymentForm**
-  - Renderização do formulário de pagamento
-  - Exibição correta do valor
-  - Presença do botão de pagamento
+### Implemented Tests
 
-### Executando os Testes
+#### PaymentForm
+- Renders the payment form
+- Correctly displays the payment amount
+- Renders the payment button
+
+### Running Tests
 ```bash
-# Executa todos os testes
+# Run all tests
 npm test
 
-# Executa testes em modo watch
+# Run tests in watch mode
 npm test -- --watch
 ```
 
-### Dependências de Teste
+### Test Dependencies
 - Jest
 - @testing-library/react
 - @testing-library/jest-dom
 
-### Cobertura de Testes
-Para verificar a cobertura de testes do projeto:
+### Test Coverage
+To check test coverage:
 ```bash
 npm test -- --coverage
 ```
 
-## Licença
-Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes
+## License
+This project is licensed under the MIT License – see the LICENSE file for details.
